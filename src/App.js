@@ -1,19 +1,18 @@
+import { observer } from 'mobx-react-lite';
 import './App.css';
-import { useState } from 'react';
 
-function App() {
+const App = observer((props) => {
 
-  const [counter, setCounter] = useState(0);
+  console.log(props.store)
 
   return (
-    <div>
-      <span>{counter}</span>
-      <div>
-        <button onClick={() => setCounter(counter + 1)}>Increment</button>
-        <button onClick={() => setCounter(counter - 1)}>Decrement</button>
-      </div>
-    </div>
+    <>
+      <h1>Counter</h1>
+      <p>Value: {props.store.counter}</p>
+      <button type="button" onClick={() => props.store.increment()}>Increment</button>
+      <button type="button" onClick={() => props.store.decrement()}>Decrement</button>
+    </>
   );
-}
+})
 
 export default App;
